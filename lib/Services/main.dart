@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:opt120/Screens/home_screen.dart';
 import '../Screens/user_screen.dart';
 
 
@@ -14,12 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'OPT120',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: UserScreen(),
+
+      home: const Home(),
     );
   }
 }
