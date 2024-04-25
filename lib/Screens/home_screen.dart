@@ -9,6 +9,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Menu(),
+      //bottomNavigationBar: ,
       appBar: AppBar(
         title: const Text("Tela Inicial"),
       ),
@@ -26,8 +27,8 @@ class Home extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
-                    child: const Text(
+                  child: const Center(
+                    child: Text(
                       "Seja muito Bem-Vindo, Não tem nada aqui",
                       textAlign: TextAlign.end,
                       style: TextStyle(

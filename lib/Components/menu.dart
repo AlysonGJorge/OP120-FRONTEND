@@ -40,8 +40,8 @@ class Menu extends StatelessWidget {
               leading: const Icon(Icons.task),
               title: Text("Usuários que fizeram as atividades"),
               onTap: (){
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserTaskScreen()));
+                //Navigator.push(context,
+                    //MaterialPageRoute(builder: (context) => UserTaskScreen()));
               },
             ),
           ],

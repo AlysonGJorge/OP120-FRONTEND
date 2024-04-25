@@ -93,219 +93,219 @@ class _UserScreenState extends State<UserScreen> {
         color: Colors.deepPurple,
         child: Center(
             child: SizedBox(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 850,
-                  padding: const EdgeInsets.all(50),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      const Text(
-                        "Cadastrar um novo usuário",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 40,
-                        ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 870,
+                      padding: const EdgeInsets.all(50),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      TextFormField(
-                        controller: _username,
-                        textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: Colors.black),
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: Colors.black,
+                      child: Column(
+                        children: [
+                          const Text(
+                            "Cadastrar um novo usuário",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 40,
+                            ),
                           ),
-                          label: Text("Usuário"),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      TextFormField(
-                        controller: _email,
-                        textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: Colors.black),
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.email,
-                            color: Colors.black,
+                          const SizedBox(
+                            height: 50,
                           ),
-                          label: Text("E-mail"),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      TextFormField(
-                        controller: _password,
-                        obscureText: _isobscure,
-                        textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(
-                            Icons.lock,
-                            color: Colors.black,
+                          TextFormField(
+                            controller: _username,
+                            textInputAction: TextInputAction.next,
+                            style: const TextStyle(color: Colors.black),
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
+                              label: Text("Usuário"),
+                            ),
                           ),
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _isobscure = !_isobscure;
-                                });
-                              },
-                              icon: Icon(_isobscure
-                                  ? Icons.visibility
-                                  : Icons.visibility_off)),
-                          label: const Text("Senha"),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      TextButton(
-                        onPressed: () async {
-                          final uri = Uri.parse('http://localhost:3000/user');
-                          var response = await api.post(
-                            uri,
-                            headers: {'Content-Type': 'application/json'},
-                            body: jsonEncode({
-                              'nm_user': _username.text,
-                              'nm_email': _email.text,
-                              'cd_senha': _password.text,
-                            }),
-                          );
-                          if (response.statusCode == 201) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text('Usuário criado com sucesso!',
-                                  style: TextStyle(color: Colors.white)),
-                            ));
-                            setState(() {});
-                          } else {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text('Erro ao criar usuário',
-                                  style: TextStyle(color: Colors.white)),
-                            ));
-                          }
-                        },
-                        child: const Text("Criar usuário"),
-                      ),
-                      FutureBuilder<List<User>>(
-                        future: pegaUsuarios(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return CircularProgressIndicator();
-                          } else if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else {
-                            return DataTable(
-                              columns: const [
-                                DataColumn(label: Text('ID')),
-                                DataColumn(label: Text('Usuário')),
-                                DataColumn(label: Text('E-mail')),
-                                DataColumn(label: Text('Senha')),
-                                DataColumn(label: Text('Atualizar')),
-                                DataColumn(label: Text('Deletar')),
-                              ],
-                              rows: snapshot.data?.map<DataRow>((user) {
-                                return DataRow(
-                                  cells: [
-                                    DataCell(Text(user.id_user.toString())),
-                                    DataCell(Text(user.nm_user)),
-                                    DataCell(Text(user.nm_email)),
-                                    DataCell(Text(user.cd_senha.toString())),
-                                    DataCell(
-                                      IconButton(
-                                        icon: Icon(Icons.update),
-                                        onPressed: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: Text('Atualizar usuário'),
-                                                content: Form(
-                                                  child: Column(
-                                                    children: [
-                                                      TextFormField(
-                                                        controller: _Changeusername,
-                                                        decoration: const InputDecoration(
-                                                          label: Text("Usuário"),
-                                                        ),
+                          const SizedBox(height: 30),
+                          TextFormField(
+                            controller: _email,
+                            textInputAction: TextInputAction.next,
+                            style: const TextStyle(color: Colors.black),
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Colors.black,
+                              ),
+                              label: Text("E-mail"),
+                            ),
+                          ),
+                          const SizedBox(height: 30),
+                          TextFormField(
+                            controller: _password,
+                            obscureText: _isobscure,
+                            textInputAction: TextInputAction.next,
+                            style: const TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isobscure = !_isobscure;
+                                    });
+                                  },
+                                  icon: Icon(_isobscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off)),
+                              label: const Text("Senha"),
+                            ),
+                          ),
+                          const SizedBox(height: 30),
+                          TextButton(
+                            onPressed: () async {
+                              final uri = Uri.parse('http://localhost:3000/user');
+                              var response = await api.post(
+                                uri,
+                                headers: {'Content-Type': 'application/json'},
+                                body: jsonEncode({
+                                  'nm_user': _username.text,
+                                  'nm_email': _email.text,
+                                  'cd_senha': _password.text,
+                                }),
+                              );
+                              if (response.statusCode == 201) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('Usuário criado com sucesso!',
+                                      style: TextStyle(color: Colors.white)),
+                                ));
+                                setState(() {});
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('Erro ao criar usuário',
+                                      style: TextStyle(color: Colors.white)),
+                                ));
+                              }
+                            },
+                            child: const Text("Criar usuário"),
+                          ),
+                          FutureBuilder<List<User>>(
+                            future: pegaUsuarios(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else {
+                                return DataTable(
+                                  columns: const [
+                                    DataColumn(label: Text('ID')),
+                                    DataColumn(label: Text('Usuário')),
+                                    DataColumn(label: Text('E-mail')),
+                                    DataColumn(label: Text('Senha')),
+                                    DataColumn(label: Text('Atualizar')),
+                                    DataColumn(label: Text('Deletar')),
+                                  ],
+                                  rows: snapshot.data?.map<DataRow>((user) {
+                                    return DataRow(
+                                      cells: [
+                                        DataCell(Text(user.id_user.toString())),
+                                        DataCell(Text(user.nm_user)),
+                                        DataCell(Text(user.nm_email)),
+                                        DataCell(Text(user.cd_senha.toString())),
+                                        DataCell(
+                                          IconButton(
+                                            icon: Icon(Icons.update),
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: Text('Atualizar usuário'),
+                                                    content: Form(
+                                                      child: Column(
+                                                        children: [
+                                                          TextFormField(
+                                                            controller: _Changeusername,
+                                                            decoration: const InputDecoration(
+                                                              label: Text("Usuário"),
+                                                            ),
+                                                          ),
+                                                          TextFormField(
+                                                            controller: _Changeemail,
+                                                            decoration: const InputDecoration(
+                                                              label: Text("E-mail"),
+                                                            ),
+                                                          ),
+                                                          TextFormField(
+                                                            controller: _Changepassword,
+                                                            obscureText: _isobscure,
+                                                            decoration: InputDecoration(
+                                                              suffixIcon: IconButton(
+                                                                  onPressed: () {
+                                                                    setState(() {
+                                                                      _isobscure = !_isobscure;
+                                                                    });
+                                                                  },
+                                                                  icon: Icon(_isobscure
+                                                                      ? Icons.visibility
+                                                                      : Icons.visibility_off)),
+                                                              label: const Text("Senha"),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      TextFormField(
-                                                        controller: _Changeemail,
-                                                        decoration: const InputDecoration(
-                                                          label: Text("E-mail"),
-                                                        ),
+                                                    ),
+                                                    actions: [
+                                                      TextButton(
+                                                        child: Text('Atualizar'),
+                                                        onPressed: () {
+                                                          atualizarUsuario(user.id_user, _Changeusername.text, _Changeemail.text, _Changepassword.text);
+                                                          setState(() {});
+                                                          Navigator.of(context).pop();
+                                                        },
                                                       ),
-                                                      TextFormField(
-                                                        controller: _Changepassword,
-                                                        obscureText: _isobscure,
-                                                        decoration: InputDecoration(
-                                                          suffixIcon: IconButton(
-                                                              onPressed: () {
-                                                                setState(() {
-                                                                  _isobscure = !_isobscure;
-                                                                });
-                                                              },
-                                                              icon: Icon(_isobscure
-                                                                  ? Icons.visibility
-                                                                  : Icons.visibility_off)),
-                                                          label: const Text("Senha"),
-                                                        ),
+                                                      TextButton(
+                                                        child: Text('Cancelar'),
+                                                        onPressed: () {
+                                                          Navigator.of(context).pop();
+                                                        },
                                                       ),
                                                     ],
-                                                  ),
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text('Atualizar'),
-                                                    onPressed: () {
-                                                      atualizarUsuario(user.id_user, _Changeusername.text, _Changeemail.text, _Changepassword.text);
-                                                      setState(() {});
-                                                      Navigator.of(context).pop();
-                                                    },
-                                                  ),
-                                                  TextButton(
-                                                    child: Text('Cancelar'),
-                                                    onPressed: () {
-                                                      Navigator.of(context).pop();
-                                                    },
-                                                  ),
-                                                ],
+                                                  );
+                                                },
                                               );
                                             },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    DataCell(
-                                      IconButton(
-                                        icon: Icon(Icons.delete),
-                                        onPressed: () {
-                                          deletarUsuario(user.id_user);
-                                          setState(() {});
-                                        },
-                                      ),
-                                    ),
-                                  ],
+                                          ),
+                                        ),
+                                        DataCell(
+                                          IconButton(
+                                            icon: Icon(Icons.delete),
+                                            onPressed: () {
+                                              deletarUsuario(user.id_user);
+                                              setState(() {});
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }).toList() ?? [],
                                 );
-                              }).toList() ?? [],
-                            );
-                          }
-                        },
+                              }
+                            },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        )),
+              ),
+            )),
       ),
     );
   }

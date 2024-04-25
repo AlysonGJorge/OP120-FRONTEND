@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:opt120/Screens/home_screen.dart';
-import '../Screens/user_screen.dart';
 
 
 void main() {
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       title: 'OPT120',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
