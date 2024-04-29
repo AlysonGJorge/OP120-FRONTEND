@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:opt120/Screens/home_screen.dart';
+import 'package:opt120/Screens/login_screen.dart';
+
+import '../Screens/register_screen.dart';
 
 
 void main() {
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      home: const Home(),
+      home: LoginScreen(),
     );
   }
 }

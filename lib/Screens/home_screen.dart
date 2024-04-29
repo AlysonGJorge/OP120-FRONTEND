@@ -1,46 +1,68 @@
 import 'package:flutter/material.dart';
-
 import '../Components/menu.dart';
+import '../Services/token.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeScreen extends StatefulWidget {
+  final String token; // Adicione um campo para armazenar o token
+
+  HomeScreen({Key? key, required this.token}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late String _token; // Adicione um campo para armazenar o token no estado
+
+  @override
+  void initState() {
+    super.initState();
+    _token = widget.token; // Inicialize o campo de token no initState()
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Menu(),
-      //bottomNavigationBar: ,
       appBar: AppBar(
         title: const Text("Tela Inicial"),
       ),
       body: Container(
         color: Colors.deepPurple,
         child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(50),
-                  height: 700,
-                  width: 350,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Seja muito Bem-Vindo, Não tem nada aqui",
-                      textAlign: TextAlign.end,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(50),
+                height: 400,
+                width: 350,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Bem-vindo!',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 40,
+                        fontSize: 30,
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Token: $_token', // Use o campo de token definido no estado
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ],
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
+

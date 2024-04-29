@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:opt120/Screens/task_screen.dart';
 import 'package:opt120/Screens/user_screen.dart';
-import 'package:opt120/Screens/user_task_screen.dart';
 import '../Screens/home_screen.dart';
+import '../Screens/user_task_screen.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -17,7 +17,7 @@ class Menu extends StatelessWidget {
             title: Text("Home"),
             onTap: (){
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Home()));
+                  MaterialPageRoute(builder: (context) => HomeScreen(token: "é isso ai")));
             },
           ),
             ListTile(
@@ -40,8 +40,8 @@ class Menu extends StatelessWidget {
               leading: const Icon(Icons.task),
               title: Text("Usuários que fizeram as atividades"),
               onTap: (){
-                //Navigator.push(context,
-                    //MaterialPageRoute(builder: (context) => UserTaskScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => UserTaskScreen()));
               },
             ),
           ],
